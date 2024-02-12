@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class ThirdHighestNumberInArray {
 	public static void main(String[] args) {
 		int[] array = { 12, 3, 24, 55, 67, 77 };
-		
+
 		//creates a stream of int values from the given int array array
-		int thirdArray = Arrays.stream(array)
+		int thirdHighestArray = Arrays.stream(array)
 				//converts each int element of the stream into its corresponding boxed type (Integer).
 				//This is necessary because the subsequent operations (sorted, distinct, etc.) 
 				//work with objects, not primitives.
@@ -17,6 +17,6 @@ public class ThirdHighestNumberInArray {
 						.findFirst()
 						.orElseThrow(() -> new IllegalArgumentException("Array is too short"));
 
-		System.out.println(thirdArray);
+		System.out.println(thirdHighestArray);
 	}
 }
