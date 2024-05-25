@@ -9,7 +9,7 @@ public class FirstRepeatedCharater {
         String str = "pavavn";
 
         Set<Character> set = new HashSet<>();
-     Character character =
+        Character character =
             // returns a stream of int value, where each 'int' value represents a unique code point in the String
                     str.chars()
                   //This Map each 'int' value to a character object
