@@ -31,5 +31,38 @@ public class EmployeeListEx {
                 .filter(list -> list.getValue().size() > 1)
                 .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
         System.out.println(employeeList);
+
+        //Fetch Second Highest Salary
+        Employee secondHighestSalary = asList.stream()
+                .sorted(Comparator.comparing(Employee::getSalary).reversed())
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+        System.out.println(secondHighestSalary);
+        //Fetching Second Highest Salary where Key as Employee Object & Value as Name
+        Optional<Employee> secondHighest = asList.stream()
+                .sorted(Comparator.comparing(Employee::getSalary).reversed())
+                .skip(1)
+                .findFirst();
+        Map<Employee,String> employeeStringMap1 = secondHighest.
+                map(employee -> Map.of(employee,employee.getName()))
+                .orElse(Map.of());
+        System.out.println(employeeStringMap1);
+        //Fetching Second Highest Salary where Key as Employee Name & Value as Employee Object
+        Map<String,Employee> employeeStringMap2 = secondHighest
+                .map(employee -> Map.of(employee.getName(),employee))
+                .orElse(Map.of());
+        System.out.println(employeeStringMap2);
+
+        //sort the Employee based on the name
+        List<Employee> sortBasedOnName = asList.stream().sorted(Comparator.comparing(Employee::getName)
+                .thenComparing(Employee::getId)).collect(Collectors.toList());
+        System.out.println(sortBasedOnName);
+       //thenComparing --> Suppose if there is same Name , we can use thenCOmparing()
+
+
+        //Double  the salary & return the Salary
+        List<Integer> collect = asList.stream().map(employee -> employee.getSalary() * 2).collect(Collectors.toList());
+        System.out.println(collect);
     }
 }
